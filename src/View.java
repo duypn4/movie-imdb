@@ -38,7 +38,8 @@ import javafx.stage.Stage;
 
 public class View {
 
-	// Setup variables
+	// Setup view elements.
+	
 	private Scene scene;
 	private GridPane sourcePane, searchPane, chartPane;
 	private Label titleLabel, subtitleLabel, creditsLabel, fileLabel, teamLabel;
@@ -53,8 +54,10 @@ public class View {
 	private ToggleGroup group1, group2;
 	private Chart chart;
 	
-	// Reusable styles
-	private String dark = "#404040";
+	
+	// Reusable view styles.
+	
+	private String dark           = "#404040";
 	private String boldStyle      = "-fx-font-size:14px;-fx-font-weight:bold;";
 	private String titleStyle     = "-fx-font-size:18px;-fx-font-weight:bold;";
 	private String subtitleStyle  = "-fx-padding:0 0 50px 0;";
@@ -67,50 +70,50 @@ public class View {
 
 	
 	/* 
-	 * Initialise all the views
+	 * Initialise all the views.
 	 */
 	public View() {
 		
-		// Initialise the top menu bar/navigation
+		// Initialise the top menu bar/navigation.
 		this.initMenu();
 		
 		
-		// Initialise the source page
+		// Initialise the source page.
 		this.initSourcePane();
 		
 		
-		// Initialise the search page
+		// Initialise the search page.
 		this.initSearchPane();
 		
 		
-		// Initialise the chart page
+		// Initialise the chart page.
 		this.initChartPane();
 
 		
-		// File choose popup
+		// File choose popup.
 		chooser = new FileChooser();
 		chooser.setTitle("Open File...");
 
 		
-		// Stack all the pages
+		// Stack all the pages.
 		StackPane controlPane = new StackPane();
 		controlPane.getChildren().addAll(sourcePane, searchPane, chartPane);
 		controlPane.setStyle("-fx-background-color:#ffffff;");
 		
 		
-		// Combine the top menu bar with the stacked pages
+		// Combine the top menu bar with the stacked pages.
 		BorderPane mainPane = new BorderPane();
 		mainPane.setTop(menuBar);
 		mainPane.setCenter(controlPane);
 
 		
-		// Put it in into the scene
+		// Put it in into the scene.
 		scene = new Scene(mainPane, 700, 500);
 	}
 
 	
 	/* 
-	 * Scene getter
+	 * Scene getter.
 	 */
 	public Scene getScene() {
 		return scene;
@@ -118,7 +121,7 @@ public class View {
 
 	
 	/* 
-	 * Initialise the top menu bar/navigation
+	 * Initialise the top menu bar/navigation.
 	 */
 	private void initMenu() {
 		item1 = new RadioMenuItem("Open");
@@ -137,7 +140,7 @@ public class View {
 	
 	
 	/* 
-	 * Setup page headers
+	 * Setup page header texts.
 	 */
 	private void setupHeader() {
 		titleLabel = new Label("XML Keyword Search System");
@@ -153,38 +156,38 @@ public class View {
 
 	
 	/* 
-	 * Initialise the source page
+	 * Initialise the source page.
 	 */
 	private void initSourcePane() {
 		
-		// Setup text
+		// Setup text.
 		setupHeader();
 		
 		fileLabel = new Label("No file chosen.");
 		fileLabel.setStyle(labelStyle);
 		
 		
-		// Setup buttons
+		// Setup buttons.
 		choose = new Button("Choose File");
 		choose.setStyle(buttonStyle);
 		
 		load = new Button("Load File");
 		load.setStyle(disabledButtonStyle);
-		load.setDisable(true); // set it disabled at the beginning, since no file uploaded yet
+		load.setDisable(true); // set it disabled at the beginning, since no file. uploaded yet
 		
 		
-		// Setup the textarea to display the file loaded file content
+		// Setup the textarea to display the file loaded file content.
 		xmlArea = new TextArea();
 		xmlArea.setEditable(false);
 		xmlArea.setPrefSize(600, 300);
 
 		
-		// Horizontal box for upload a file components
+		// Horizontal box for upload a file components.
 		HBox hBox = new HBox(10);
 		hBox.getChildren().addAll(choose, fileLabel);
 
 		
-		// Grid panel contains all elements in the source panel
+		// Grid panel contains all elements in the source panel.
 		sourcePane = new GridPane();
 		sourcePane.getColumnConstraints().add(new ColumnConstraints(400));
 		sourcePane.getColumnConstraints().add(new ColumnConstraints(200));
@@ -201,41 +204,42 @@ public class View {
 		sourcePane.add(xmlArea, 0, 4, 2, 1);
 	}
 
+	
 	/* 
-	 * Initialise the search page
+	 * Initialise the search page.
 	 */
 	private void initSearchPane() {
 		
-		// Setup text
+		// Setup text.
 		setupHeader();
 		
 		Label wordLabel = new Label("Enter keyword here:");
 		wordLabel.setStyle(boldLabelStyle);
 
 		
-		// Setup fields
+		// Setup fields.
 		wordField = new TextField();
 		wordField.setPrefWidth(390);
 		wordField.setStyle(fieldStyle);
 		
 		
-		// Setup buttons
+		// Setup buttons.
 		search = new Button("Search");
 		search.setStyle(buttonStyle);
 		
 
-		// Setup the textarea to display the searched content
+		// Setup the textarea to display the searched content.
 		resultArea = new TextArea();
 		resultArea.setEditable(false);
 		resultArea.setPrefSize(600, 300);
 
 		
-		// Horizontal box for fields
+		// Horizontal box for fields.
 		HBox hBox = new HBox(10);
 		hBox.getChildren().addAll(wordLabel, wordField, search);
 
 		
-		// Grid panel contains all elements in the search panel
+		// Grid panel contains all elements in the search panel.
 		searchPane = new GridPane();
 		searchPane.getColumnConstraints().add(new ColumnConstraints(400));
 		searchPane.getColumnConstraints().add(new ColumnConstraints(200));
@@ -252,19 +256,20 @@ public class View {
 		searchPane.setVisible(false);
 	}
 
+	
 	/* 
-	 * Initialise the chart page
+	 * Initialise the chart page.
 	 */
 	private void initChartPane() {
 		
-		// Setup text
+		// Setup text.
 		setupHeader();
 		
 		group1 = new ToggleGroup();
 		group2 = new ToggleGroup();
 
 		
-		// Setup radio button options
+		// Setup radio button options.
 		top3 = new RadioButton("Top-3");
 		top3.setToggleGroup(group1);
 		top3.setSelected(true);
@@ -281,7 +286,7 @@ public class View {
 		topBox.setStyle("-fx-pref-width:600px;-fx-padding:5px;");
 
 		
-		// Setup charts button options
+		// Setup charts button options.
 		bar = new ToggleButton("Bar Chart");
 		bar.setToggleGroup(group2);
 		bar.setSelected(true);
@@ -296,11 +301,13 @@ public class View {
 		chartBox.setStyle("-fx-pref-width:600px;-fx-padding:5px;");
 
 		
+		// Combine all the options into a box.
 		VBox optionsBox = new VBox(20);
 		optionsBox.getChildren().addAll(topBox, chartBox);
 		optionsBox.setStyle(boxStyle + "-fx-pref-width:600px;");
 		
-		// Grid panel contains all elements in the chart panel
+		
+		// Grid panel contains all elements in the chart panel.
 		chartPane = new GridPane();
 		chartPane.getColumnConstraints().add(new ColumnConstraints(400));
 		chartPane.getColumnConstraints().add(new ColumnConstraints(200));
@@ -315,27 +322,47 @@ public class View {
 		chartPane.add(optionsBox, 0, 2, 2, 1);
 		chartPane.setVisible(false);
 	}
-
+	
+	
+	/* 
+	 * Open file upload dialog.
+	 */
 	public File getFile(Stage stage) {
 		return chooser.showOpenDialog(stage);
 	}
 
+	
+	/* 
+	 * Get the keywords from wordField.
+	 */
 	public String getKeyword() {
 		return wordField.getText();
 	}
 
+	
+	/* 
+	 * Get selected top chart option.
+	 */
 	public String getSelectedTop() {
 		RadioButton button = (RadioButton) group1.getSelectedToggle();
 
 		return button.getText();
 	}
 
+	
+	/* 
+	 * Get selected chart type option.
+	 */
 	public String getSelectedChart() {
 		ToggleButton button = (ToggleButton) group2.getSelectedToggle();
 
 		return button.getText();
 	}
 
+	
+	/* 
+	 * Switch between pages/panels.
+	 */
 	public void setPane(String type) {
 		switch (type) {
 		case "Open":
@@ -356,28 +383,52 @@ public class View {
 		}
 	}
 
+	
+	/* 
+	 * Set the file text from the upload dialog.
+	 */
 	public void setFileLabel(String text) {
 		fileLabel.setText(text);
 	}
 	
+	
+	/* 
+	 * Enable the load button.
+	 */
 	public void enableLoadButton() {
 		load.setDisable(false);
 		load.setStyle(buttonStyle + "-fx-pref-width:100px;");
 	}
 	
+	
+	/* 
+	 * Disable the load button.
+	 */
 	public void disableLoadButton() {
 		load.setDisable(true);
 		load.setStyle(disabledButtonStyle + "-fx-pref-width:100px;");
 	}
 
+	
+	/* 
+	 * Set XML area for the loaded content result.
+	 */
 	public void setXmlArea(String text) {
 		xmlArea.setText(text);
 	}
 
+	
+	/* 
+	 * Set result area for the search result.
+	 */
 	public void setResultArea(String text) {
 		resultArea.setText(text);
 	}
 
+	
+	/* 
+	 * Show alerts/popup.
+	 */
 	public void setAlert(String message, boolean type) {
 		Alert alert = null;
 
@@ -386,22 +437,35 @@ public class View {
 		} else {
 			alert = new Alert(AlertType.WARNING);
 		}
+		
 		alert.setTitle("IMDB Visualiser");
 		alert.setContentText(message);
 		alert.show();
 	}
 
+	
+	/* 
+	 * Calculate and display the charts in the chart page.
+	 */
 	public void setChart(int top, String type, ArrayList<Entry<String, Integer>> data) {
 		chartPane.getChildren().remove(chart);
 
+		// Show a bar chart.
 		if (type.equals("Bar Chart")) {
+			
 			CategoryAxis xAxis = new CategoryAxis();
 			int max = data.get(0).getValue();
 			NumberAxis yAxis = new NumberAxis(0, max, 1);
+			
+			
+			// Set bar chart labels.
 			xAxis.setLabel("Keywords");
 			yAxis.setLabel("Frequency Scores");
 
+			
+			// Calculate bar chart data.
 			Series<String, Integer> series = new Series<String, Integer>();
+			
 			for (int i = 0; i < top; i++) {
 				String key = data.get(i).getKey();
 				int value = data.get(i).getValue();
@@ -413,8 +477,14 @@ public class View {
 			bar.getData().add(series);
 
 			chart = bar;
+			
+		// Show a pie chart.
 		} else if (type.equals("Pie Chart")) {
+			
 			ObservableList<PieChart.Data> list = FXCollections.observableArrayList();
+			
+			
+			// Calculate the pie chart data.
 			for (int i = 0; i < top; i++) {
 				String key = data.get(i).getKey();
 				int value = data.get(i).getValue();
@@ -428,29 +498,51 @@ public class View {
 			chart = pie;
 		}
 
+		
+		// Show the chart.
 		chart.setTitle("Top Co-occurring Keywords");
 		chartPane.add(chart, 0, 3, 2, 1);
 	}
 
+	
+	/* 
+	 * Add listeners for menu items.
+	 */
 	public void addPaneListener(EventHandler<ActionEvent> listener) {
 		item1.setOnAction(listener);
 		item2.setOnAction(listener);
 		item3.setOnAction(listener);
 	}
 
+	
+	/* 
+	 * Add a listener after choosing a file from the upload dialog.
+	 */
 	public void addChooseListener(EventHandler<ActionEvent> listener) {
 		choose.setOnAction(listener);
 	}
 
+	
+	/* 
+	 * Add a click listener for the load button.
+	 */
 	public void addLoadListener(EventHandler<ActionEvent> listener) {
 		load.setOnAction(listener);
 	}
 
+	
+	/* 
+	 * Add listeners to search function.
+	 */
 	public void addSearchListener(EventHandler<ActionEvent> listener) {
 		search.setOnAction(listener);
 		wordField.setOnAction(listener);
 	}
 
+	
+	/* 
+	 * Add listeners for all chart options.
+	 */
 	public void addTopListener(EventHandler<ActionEvent> listener) {
 		top3.setOnAction(listener);
 		top5.setOnAction(listener);
