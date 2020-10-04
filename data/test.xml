@@ -1,0 +1,388 @@
+<imdb>
+    <movie>
+        <title>The Godfather</title>
+        <year>1972</year>
+        <rating>9.2</rating>
+        <ds>
+            <director>
+                <name>Francis Ford Coppola</name>
+                <role></role>
+            </director>
+        </ds>
+        <genres>
+            <item>Crime</item>
+            <item>Drama</item>
+        </genres>
+        <ws>
+            <writer>
+                <name>Mario Puzo</name>
+                <role>(screenplay)</role>
+            </writer>
+            <writer>
+                <name>Francis Ford Coppola</name>
+                <role>(screenplay)</role>
+            </writer>
+            <writer>
+                <name>Mario Puzo</name>
+                <role>(novel)</role>
+            </writer>
+        </ws>
+        <cts>
+            <country>USA</country>
+        </cts>
+        <ls>
+            <language>English</language>
+            <language>Italian</language>
+            <language>Latin</language>
+        </ls>
+        <cps>
+            <company>Alfran Productions</company>
+            <company>Paramount Pictures</company>
+        </cps>
+        <cast>
+            <p>
+                <name>Marlon Brando</name>
+                <role>Don Vito Corleone</role>
+            </p>
+            <p>
+                <name>Al Pacino</name>
+                <role>Michael Corleone</role>
+            </p>
+            <p>
+                <name>James Caan</name>
+                <role>Santino 'Sonny' Corleone</role>
+            </p>
+            <p>
+                <name>Richard S. Castellano</name>
+                <role>Peter Clemenza</role>
+            </p>
+            <p>
+                <name>Robert Duvall</name>
+                <role>Tom Hagen</role>
+            </p>
+        </cast>
+        <kws>
+            <kw>mafia</kw>
+            <kw>wedding</kw>
+            <kw>organized-crime</kw>
+            <kw>lawyer</kw>
+            <kw>violence</kw>
+            <kw>new-york-city</kw>
+            <kw>1940s</kw>
+            <kw>extramarital-affair</kw>
+            <kw>falling-down-stairs</kw>
+            <kw>thompson-gun</kw>
+        </kws>
+    </movie>
+    <movie>
+        <title>The Shawshank Redemption</title>
+        <year>1994</year>
+        <rating>9.2</rating>
+        <ds>
+            <director>
+                <name>Frank Darabont</name>
+                <role></role>
+            </director>
+        </ds>
+        <genres>
+            <item>Crime</item>
+            <item>Drama</item>
+        </genres>
+        <ws>
+            <writer>
+                <name>Frank Darabont</name>
+                <role>(screenplay)</role>
+            </writer>
+            <writer>
+                <name>Stephen King</name>
+                <role>(short story "Rita Hayworth and Shawshank Redemption")</role>
+            </writer>
+        </ws>
+        <cts>
+            <country>USA</country>
+        </cts>
+        <mpaa>Rated R for language and prison violence.</mpaa>
+        <ls>
+            <language>English</language>
+        </ls>
+        <cps>
+            <company>Castle Rock Entertainment</company>
+        </cps>
+        <cast>
+            <p>
+                <name>Tim Robbins</name>
+                <role>Andy Dufresne</role>
+            </p>
+            <p>
+                <name>Morgan Freeman</name>
+                <role>Ellis Boyd 'Red' Redding</role>
+            </p>
+            <p>
+                <name>Bob Gunton</name>
+                <role>Warden Norton</role>
+            </p>
+            <p>
+                <name>William Sadler</name>
+                <role>Heywood</role>
+            </p>
+            <p>
+                <name>Clancy Brown</name>
+                <role>Captain Hadley</role>
+            </p>
+        </cast>
+        <kws>
+            <kw>prison</kw>
+            <kw>murder</kw>
+            <kw>friend</kw>
+            <kw>banker</kw>
+            <kw>hope</kw>
+            <kw>imprisonment</kw>
+            <kw>life-imprisonment</kw>
+            <kw>1940s</kw>
+            <kw>redemption</kw>
+            <kw>prisoner</kw>
+        </kws>
+    </movie>
+    <movie>
+        <title>Il buono, il brutto, il cattivo.</title>
+        <year>1966</year>
+        <rating>9.0</rating>
+        <ds>
+            <director>
+                <name>Sergio Leone</name>
+                <role></role>
+            </director>
+        </ds>
+        <genres>
+            <item>Adventure</item>
+            <item>Western</item>
+        </genres>
+        <ws>
+            <writer>
+                <name>Agenore Incrocci</name>
+                <role>(screenplay) (as Age)</role>
+            </writer>
+            <writer>
+                <name>Mickey Knox</name>
+                <role>(English version by)</role>
+            </writer>
+            <writer>
+                <name>Sergio Leone</name>
+                <role>(story)</role>
+            </writer>
+            <writer>
+                <name>Furio Scarpelli</name>
+                <role>(screenplay) (as Scarpelli)</role>
+            </writer>
+            <writer>
+                <name>Luciano Vincenzoni</name>
+                <role>(screenplay)</role>
+            </writer>
+            <writer>
+                <name>Sergio Leone</name>
+                <role>(screenplay)</role>
+            </writer>
+            <writer>
+                <name>Luciano Vincenzoni</name>
+                <role>(story)</role>
+            </writer>
+        </ws>
+        <cts>
+            <country>Italy</country>
+            <country>Spain</country>
+            <country>West Germany</country>
+        </cts>
+        <ls>
+            <language>Italian</language>
+        </ls>
+        <cps>
+            <company>Arturo González Producciones Cinematográficas, S.A</company>
+            <company>Constantin Film Produktion</company>
+            <company>Produzioni Europee Associati (PEA)</company>
+        </cps>
+        <cast>
+            <p>
+                <name>Eli Wallach</name>
+                <role>Tuco</role>
+            </p>
+            <p>
+                <name>Clint Eastwood</name>
+                <role>Blondie</role>
+            </p>
+            <p>
+                <name>Lee Van Cleef</name>
+                <role>Sentenza / Angel Eyes</role>
+            </p>
+            <p>
+                <name>Aldo Giuffrè</name>
+                <role>Alcoholic Union Captain</role>
+            </p>
+            <p>
+                <name>Luigi Pistilli</name>
+                <role>Father Pablo Ramirez</role>
+            </p>
+        </cast>
+        <kws>
+            <kw>gold</kw>
+            <kw>cemetery</kw>
+            <kw>scam</kw>
+            <kw>outlaw</kw>
+            <kw>honor</kw>
+            <kw>hitman</kw>
+            <kw>bandit</kw>
+            <kw>third-part</kw>
+            <kw>dehydration</kw>
+            <kw>illiteracy</kw>
+        </kws>
+    </movie>
+    <movie>
+        <title>Inception</title>
+        <year>2010</year>
+        <rating>9.0</rating>
+        <ds>
+            <director>
+                <name>Christopher Nolan</name>
+                <role></role>
+            </director>
+        </ds>
+        <genres>
+            <item>Action</item>
+            <item>Crime</item>
+            <item>Mystery</item>
+            <item>Sci-Fi</item>
+            <item>Thriller</item>
+        </genres>
+        <ws>
+            <writer>
+                <name>Christopher Nolan</name>
+                <role>(written by)</role>
+            </writer>
+        </ws>
+        <cts>
+            <country>USA</country>
+            <country>UK</country>
+        </cts>
+        <mpaa>Rated PG-13 for sequences of violence and action throughout.</mpaa>
+        <ls>
+            <language>English</language>
+            <language>Japanese</language>
+            <language>French</language>
+        </ls>
+        <cps>
+            <company>Warner Bros. Pictures</company>
+            <company>Legendary Pictures</company>
+            <company>Syncopy</company>
+        </cps>
+        <cast>
+            <p>
+                <name>Leonardo DiCaprio</name>
+                <role>Cobb</role>
+            </p>
+            <p>
+                <name>Joseph Gordon-Levitt</name>
+                <role>Arthur</role>
+            </p>
+            <p>
+                <name>Ellen Page</name>
+                <role>Ariadne</role>
+            </p>
+            <p>
+                <name>Tom Hardy</name>
+                <role>Eames</role>
+            </p>
+            <p>
+                <name>Ken Watanabe</name>
+                <role>Saito</role>
+            </p>
+        </cast>
+        <kws>
+            <kw>dream</kw>
+            <kw>thief</kw>
+            <kw>subconscious</kw>
+            <kw>corporate-espionage</kw>
+            <kw>children</kw>
+            <kw>deception</kw>
+            <kw>dreamer</kw>
+            <kw>guilt</kw>
+            <kw>one-last-job</kw>
+            <kw>businessman</kw>
+        </kws>
+    </movie>
+    <movie>
+        <title>Pulp Fiction</title>
+        <year>1994</year>
+        <rating>9.0</rating>
+        <ds>
+            <director>
+                <name>Quentin Tarantino</name>
+                <role></role>
+            </director>
+        </ds>
+        <genres>
+            <item>Crime</item>
+            <item>Drama</item>
+        </genres>
+        <ws>
+            <writer>
+                <name>Quentin Tarantino</name>
+                <role>(written by)</role>
+            </writer>
+            <writer>
+                <name>Roger Avary</name>
+                <role>(stories)</role>
+            </writer>
+            <writer>
+                <name>Quentin Tarantino</name>
+                <role>(stories)</role>
+            </writer>
+        </ws>
+        <cts>
+            <country>USA</country>
+        </cts>
+        <mpaa>Rated R for strong graphic violence and drug use, pervasive strong language and some sexuality.</mpaa>
+        <ls>
+            <language>English</language>
+            <language>Spanish</language>
+            <language>French</language>
+        </ls>
+        <cps>
+            <company>A Band Apart</company>
+            <company>Jersey Films</company>
+            <company>Miramax Films</company>
+        </cps>
+        <cast>
+            <p>
+                <name>John Travolta</name>
+                <role>Vincent Vega</role>
+            </p>
+            <p>
+                <name>Samuel L. Jackson</name>
+                <role>Jules Winnfield</role>
+            </p>
+            <p>
+                <name>Tim Roth</name>
+                <role>Pumpkin - Ringo</role>
+            </p>
+            <p>
+                <name>Amanda Plummer</name>
+                <role>Honey Bunny - Yolanda</role>
+            </p>
+            <p>
+                <name>Eric Stoltz</name>
+                <role>Lance</role>
+            </p>
+        </cast>
+        <kws>
+            <kw>boxer</kw>
+            <kw>restaurant</kw>
+            <kw>briefcase</kw>
+            <kw>gangster</kw>
+            <kw>violence</kw>
+            <kw>diner</kw>
+            <kw>crime-boss</kw>
+            <kw>coffee</kw>
+            <kw>redemption</kw>
+            <kw>killed-with-a-gun</kw>
+        </kws>
+    </movie>
+</imdb>
