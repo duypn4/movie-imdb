@@ -60,7 +60,7 @@ public class View {
 	private String dark           = "#404040";
 	private String boldStyle      = "-fx-font-size:14px;-fx-font-weight:bold;";
 	private String titleStyle     = "-fx-font-size:18px;-fx-font-weight:bold;";
-	private String subtitleStyle  = "-fx-padding:0 0 50px 0;";
+	private String subtitleStyle  = "-fx-padding:0 0 30px 0;";
 	private String labelStyle     = "-fx-padding:4px;";
 	private String boldLabelStyle = labelStyle + "-fx-font-weight:bold;";
 	private String buttonStyle    = "-fx-background-color:#adb2ff;-fx-border-color:" + dark + ";-fx-pref-width:100px;";
@@ -149,9 +149,8 @@ public class View {
 		subtitleLabel = new Label("A keyword search system over a IMDB XML document.");
 		subtitleLabel.setStyle(subtitleStyle);
 
-		teamLabel = new Label("Team:");
-		teamLabel.setStyle(boldStyle);
-		creditsLabel = new Label("- 123456789 | Duy\n- 101272020 | Gabriel\n- 123456789 | Van Anh");
+		teamLabel = new Label("Team:\n- 123456789 | Duy\n- 101272020 | Gabriel\n- 123456789 | Van Anh");
+		creditsLabel = new Label("");
 	}
 
 	
@@ -197,8 +196,7 @@ public class View {
 		sourcePane.setHgap(20);
 		sourcePane.add(titleLabel, 0, 0);
 		sourcePane.add(subtitleLabel, 0, 1);
-		sourcePane.add(teamLabel, 1, 0);
-		sourcePane.add(creditsLabel, 1, 1);
+		sourcePane.add(teamLabel, 1, 0, 1, 2);
 		sourcePane.add(hBox, 0, 2, 2, 1);
 		sourcePane.add(load, 0, 3, 2, 1);
 		sourcePane.add(xmlArea, 0, 4, 2, 1);
@@ -219,7 +217,7 @@ public class View {
 		
 		// Setup fields.
 		wordField = new TextField();
-		wordField.setPrefWidth(390);
+		wordField.setPrefWidth(378);
 		wordField.setStyle(fieldStyle);
 		
 		
@@ -249,8 +247,7 @@ public class View {
 		searchPane.setHgap(20);
 		searchPane.add(titleLabel, 0, 0);
 		searchPane.add(subtitleLabel, 0, 1);
-		searchPane.add(teamLabel, 1, 0);
-		searchPane.add(creditsLabel, 1, 1);
+		searchPane.add(teamLabel, 1, 0, 1, 2);
 		searchPane.add(hBox, 0, 2, 2, 1);
 		searchPane.add(resultArea, 0, 3, 2, 1);
 		searchPane.setVisible(false);
@@ -261,9 +258,6 @@ public class View {
 	 * Initialise the chart page.
 	 */
 	private void initChartPane() {
-		
-		// Setup text.
-		setupHeader();
 		
 		group1 = new ToggleGroup();
 		group2 = new ToggleGroup();
@@ -311,15 +305,12 @@ public class View {
 		chartPane = new GridPane();
 		chartPane.getColumnConstraints().add(new ColumnConstraints(400));
 		chartPane.getColumnConstraints().add(new ColumnConstraints(200));
-		chartPane.setPadding(new Insets(30, 0, 40, 0));
+		chartPane.setPadding(new Insets(0, 10, 15, 10));
 		chartPane.setAlignment(Pos.CENTER);
 		chartPane.setVgap(10);
 		chartPane.setHgap(20);
-		chartPane.add(titleLabel, 0, 0);
-		chartPane.add(subtitleLabel, 0, 1);
-		chartPane.add(teamLabel, 1, 0);
-		chartPane.add(creditsLabel, 1, 1);
-		chartPane.add(optionsBox, 0, 2, 2, 1);
+		chartPane.add(topBox, 0, 2, 2, 1);
+		chartPane.add(chartBox, 0, 4, 2, 1);
 		chartPane.setVisible(false);
 	}
 	
