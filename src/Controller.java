@@ -51,6 +51,7 @@ public class Controller {
 
 			if (ext.equalsIgnoreCase("xml")) {
 				view.setFileLabel(name);
+				view.enableLoadButton();
 			} else {
 				view.setAlert("This file format is not supported!", false);
 				file = null;
@@ -58,7 +59,8 @@ public class Controller {
 		}
 
 		if (file == null) {
-			view.setFileLabel("No file chosen");
+			view.setFileLabel("No file chosen.");
+			view.disableLoadButton();
 		}
 
 		view.setXmlArea("");
