@@ -36,13 +36,21 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+/**
+ * COS80007 Assignment 2: The class is a view interacting with user through UI
+ * control components
+ * 
+ * @author Ngoc Duy Pham (102888457)
+ * @author Gabriel Andreas (101272020)
+ * @author Van Anh Tran (123456789)
+ *
+ * @version 1.0
+ */
 public class View {
 
-	// Setup view elements.
-	
+	// UI components
 	private Scene scene;
-	private GridPane sourcePane, searchPane, chartPane;
-	private Label titleLabel, subtitleLabel, creditsLabel, fileLabel, teamLabel;
+	private Label titleLabel, subtitleLabel, fileLabel, teamLabel;
 	private Button choose, load, search;
 	private ToggleButton bar, pie;
 	private TextField wordField;
@@ -53,140 +61,112 @@ public class View {
 	private RadioButton top3, top5, top8, top10;
 	private ToggleGroup group1, group2;
 	private Chart chart;
-	
-	
-	// Reusable view styles.
-	
-	private String dark           = "#404040";
-	private String boldStyle      = "-fx-font-size:14px;-fx-font-weight:bold;";
-	private String titleStyle     = "-fx-font-size:18px;-fx-font-weight:bold;";
-	private String subtitleStyle  = "-fx-padding:0 0 30px 0;";
-	private String labelStyle     = "-fx-padding:4px;";
-	private String boldLabelStyle = labelStyle + "-fx-font-weight:bold;";
-	private String buttonStyle    = "-fx-background-color:#adb2ff;-fx-border-color:" + dark + ";-fx-pref-width:100px;";
-	private String disabledButtonStyle = "-fx-background-color:#ffb2b8;-fx-border-color:" + dark + ";-fx-pref-width:100px;";
-	private String fieldStyle     = "-fx-background-color:#ffffff;-fx-border-color:" + dark + ";";
-	private String boxStyle       = "-fx-padding:5px;-fx-border:1px;-fx-border-color:" + dark + ";";
+	// UI layouts
+	private GridPane sourcePane, searchPane, chartPane;
+	// button style
+	private String buttonStyle = "-fx-background-color:#adb2ff;-fx-border-color:#404040;-fx-pref-width:100px";
 
-	
-	/* 
-	 * Initialise all the views.
+	/**
+	 * Constructor
 	 */
 	public View() {
-		
-		// Initialise the top menu bar/navigation.
 		this.initMenu();
-		
-		
-		// Initialise the source page.
 		this.initSourcePane();
-		
-		
-		// Initialise the search page.
 		this.initSearchPane();
-		
-		
-		// Initialise the chart page.
 		this.initChartPane();
 
-		
-		// File choose popup.
+		// create file chooser
 		chooser = new FileChooser();
 		chooser.setTitle("Open File...");
 
-		
-		// Stack all the pages.
+		// create control pane
 		StackPane controlPane = new StackPane();
 		controlPane.getChildren().addAll(sourcePane, searchPane, chartPane);
 		controlPane.setStyle("-fx-background-color:#ffffff;");
-		
-		
-		// Combine the top menu bar with the stacked pages.
+
+		// create main pane
 		BorderPane mainPane = new BorderPane();
 		mainPane.setTop(menuBar);
 		mainPane.setCenter(controlPane);
 
-		
-		// Put it in into the scene.
+		// create scene
 		scene = new Scene(mainPane, 700, 500);
 	}
 
-	
-	/* 
-	 * Scene getter.
+	/**
+	 * Getter for scene
+	 * 
+	 * @return main application scene
 	 */
 	public Scene getScene() {
 		return scene;
 	}
 
-	
-	/* 
-	 * Initialise the top menu bar/navigation.
+	/**
+	 * Method to create menu bar
 	 */
 	private void initMenu() {
+		// create menu items
 		item1 = new RadioMenuItem("Open");
 		item2 = new RadioMenuItem("Search");
 		item3 = new RadioMenuItem("Visualisation");
 
+		// create toggle group
 		ToggleGroup group = new ToggleGroup();
 		group.getToggles().addAll(item1, item2, item3);
 
+		// create menu
 		Menu menu = new Menu("Options");
 		menu.getItems().addAll(item1, item2, item3);
 
+		// create menu bar
 		menuBar = new MenuBar();
 		menuBar.getMenus().add(menu);
 	}
-	
-	
-	/* 
-	 * Setup page header texts.
-	 */
-	private void setupHeader() {
-		titleLabel = new Label("XML Keyword Search System");
-		titleLabel.setStyle(titleStyle);
-		
-		subtitleLabel = new Label("A keyword search system over a IMDB XML document.");
-		subtitleLabel.setStyle(subtitleStyle);
 
-		teamLabel = new Label("Team:\n- 123456789 | Duy\n- 101272020 | Gabriel\n- 123456789 | Van Anh");
-		creditsLabel = new Label("");
+	/**
+	 * Method to create scene titles
+	 */
+	private void initTitle() {
+		// create application title
+		titleLabel = new Label("XML Keyword Search System");
+		titleLabel.setStyle("-fx-font-size:18px;-fx-font-weight:bold");
+
+		// create application subtitle
+		subtitleLabel = new Label("A keyword search system over a IMDB XML document.");
+		subtitleLabel.setStyle("-fx-padding:0 0 30px 0");
+
+		// create team title
+		teamLabel = new Label("Team:\n- 102888457 | Duy\n- 101272020 | Gabriel\n- 123456789 | Van Anh");
 	}
 
-	
-	/* 
-	 * Initialise the source page.
+	/**
+	 * Method to create source pane
 	 */
 	private void initSourcePane() {
-		
-		// Setup text.
-		setupHeader();
-		
+		initTitle();
+
+		// create file label
 		fileLabel = new Label("No file chosen.");
-		fileLabel.setStyle(labelStyle);
-		
-		
-		// Setup buttons.
+		fileLabel.setStyle("-fx-padding:4px");
+
+		// create choose and load buttons
 		choose = new Button("Choose File");
 		choose.setStyle(buttonStyle);
-		
 		load = new Button("Load File");
-		load.setStyle(disabledButtonStyle);
-		load.setDisable(true); // set it disabled at the beginning, since no file. uploaded yet
-		
-		
-		// Setup the textarea to display the file loaded file content.
+		load.setStyle(buttonStyle);
+		load.setDisable(true);
+
+		// create xml text area
 		xmlArea = new TextArea();
 		xmlArea.setEditable(false);
 		xmlArea.setPrefSize(600, 300);
 
-		
-		// Horizontal box for upload a file components.
+		// create hbox pane containing choose button and file label
 		HBox hBox = new HBox(10);
 		hBox.getChildren().addAll(choose, fileLabel);
 
-		
-		// Grid panel contains all elements in the source panel.
+		// create source pane
 		sourcePane = new GridPane();
 		sourcePane.getColumnConstraints().add(new ColumnConstraints(400));
 		sourcePane.getColumnConstraints().add(new ColumnConstraints(200));
@@ -202,42 +182,36 @@ public class View {
 		sourcePane.add(xmlArea, 0, 4, 2, 1);
 	}
 
-	
-	/* 
-	 * Initialise the search page.
+	/**
+	 * Method to create search pane
 	 */
 	private void initSearchPane() {
-		
-		// Setup text.
-		setupHeader();
-		
-		Label wordLabel = new Label("Enter keyword here:");
-		wordLabel.setStyle(boldLabelStyle);
+		initTitle();
 
-		
-		// Setup fields.
+		// create keyword label
+		Label wordLabel = new Label("Enter keyword here:");
+		wordLabel.setStyle("-fx-padding:4px;-fx-font-weight:bold");
+
+		// create keyword text field
 		wordField = new TextField();
 		wordField.setPrefWidth(378);
-		wordField.setStyle(fieldStyle);
-		
-		
-		// Setup buttons.
+		wordField.setStyle("-fx-background-color:#ffffff;-fx-border-color:#404040");
+
+		// create search button
 		search = new Button("Search");
 		search.setStyle(buttonStyle);
-		
 
-		// Setup the textarea to display the searched content.
+		// create result text area
 		resultArea = new TextArea();
 		resultArea.setEditable(false);
 		resultArea.setPrefSize(600, 300);
 
-		
-		// Horizontal box for fields.
+		// create hbox pane containing keyword label, keyword text field and search
+		// button
 		HBox hBox = new HBox(10);
 		hBox.getChildren().addAll(wordLabel, wordField, search);
 
-		
-		// Grid panel contains all elements in the search panel.
+		// create search pane
 		searchPane = new GridPane();
 		searchPane.getColumnConstraints().add(new ColumnConstraints(400));
 		searchPane.getColumnConstraints().add(new ColumnConstraints(200));
@@ -253,17 +227,15 @@ public class View {
 		searchPane.setVisible(false);
 	}
 
-	
-	/* 
-	 * Initialise the chart page.
+	/**
+	 * Method to create chart pane
 	 */
 	private void initChartPane() {
-		
+		// create toggle groups
 		group1 = new ToggleGroup();
 		group2 = new ToggleGroup();
 
-		
-		// Setup radio button options.
+		// create radio buttons
 		top3 = new RadioButton("Top-3");
 		top3.setToggleGroup(group1);
 		top3.setSelected(true);
@@ -273,66 +245,56 @@ public class View {
 		top8.setToggleGroup(group1);
 		top10 = new RadioButton("Top-10");
 		top10.setToggleGroup(group1);
-		
 		HBox topBox = new HBox(20);
 		topBox.getChildren().addAll(top3, top5, top8, top10);
 		topBox.setAlignment(Pos.CENTER);
-		topBox.setStyle("-fx-pref-width:600px;-fx-padding:5px;");
 
-		
-		// Setup charts button options.
+		// create toggle buttons
 		bar = new ToggleButton("Bar Chart");
 		bar.setToggleGroup(group2);
 		bar.setSelected(true);
-		bar.setStyle(buttonStyle);
 		pie = new ToggleButton("Pie Chart");
 		pie.setToggleGroup(group2);
-		pie.setStyle(buttonStyle);
-		
 		HBox chartBox = new HBox(20);
 		chartBox.getChildren().addAll(bar, pie);
 		chartBox.setAlignment(Pos.CENTER);
-		chartBox.setStyle("-fx-pref-width:600px;-fx-padding:5px;");
 
-		
-		// Combine all the options into a box.
-		VBox optionsBox = new VBox(20);
-		optionsBox.getChildren().addAll(topBox, chartBox);
-		optionsBox.setStyle(boxStyle + "-fx-pref-width:600px;");
-		
-		
-		// Grid panel contains all elements in the chart panel.
+		// create chart pane
 		chartPane = new GridPane();
 		chartPane.getColumnConstraints().add(new ColumnConstraints(400));
 		chartPane.getColumnConstraints().add(new ColumnConstraints(200));
-		chartPane.setPadding(new Insets(0, 10, 15, 10));
+		chartPane.setPadding(new Insets(10, 10, 10, 10));
 		chartPane.setAlignment(Pos.CENTER);
 		chartPane.setVgap(10);
 		chartPane.setHgap(20);
-		chartPane.add(topBox, 0, 2, 2, 1);
-		chartPane.add(chartBox, 0, 4, 2, 1);
+		chartPane.add(topBox, 0, 0, 2, 1);
+		chartPane.add(chartBox, 0, 2, 2, 1);
 		chartPane.setVisible(false);
 	}
-	
-	
-	/* 
-	 * Open file upload dialog.
+
+	/**
+	 * Method to get source file from file chooser
+	 * 
+	 * @param stage main stage object
+	 * @return source file object
 	 */
 	public File getFile(Stage stage) {
 		return chooser.showOpenDialog(stage);
 	}
 
-	
-	/* 
-	 * Get the keywords from wordField.
+	/**
+	 * Method to get user keyword from text field
+	 * 
+	 * @return user keyword string
 	 */
 	public String getKeyword() {
 		return wordField.getText();
 	}
 
-	
-	/* 
-	 * Get selected top chart option.
+	/**
+	 * Method to get label of radio buttons
+	 * 
+	 * @return button label string
 	 */
 	public String getSelectedTop() {
 		RadioButton button = (RadioButton) group1.getSelectedToggle();
@@ -340,9 +302,10 @@ public class View {
 		return button.getText();
 	}
 
-	
-	/* 
-	 * Get selected chart type option.
+	/**
+	 * Method to get label of toggle buttons
+	 * 
+	 * @return button label string
 	 */
 	public String getSelectedChart() {
 		ToggleButton button = (ToggleButton) group2.getSelectedToggle();
@@ -350,9 +313,10 @@ public class View {
 		return button.getText();
 	}
 
-	
-	/* 
-	 * Switch between pages/panels.
+	/**
+	 * Method to set panes visible based on user selection
+	 * 
+	 * @param type pane type
 	 */
 	public void setPane(String type) {
 		switch (type) {
@@ -374,51 +338,47 @@ public class View {
 		}
 	}
 
-	
-	/* 
-	 * Set the file text from the upload dialog.
+	/**
+	 * Method to set file label showing file name
+	 * 
+	 * @param text file name string
 	 */
 	public void setFileLabel(String text) {
 		fileLabel.setText(text);
 	}
-	
-	
-	/* 
-	 * Enable the load button.
+
+	/**
+	 * Method to set load button disable
+	 * 
+	 * @param off disable flag
 	 */
-	public void enableLoadButton() {
-		load.setDisable(false);
-		load.setStyle(buttonStyle + "-fx-pref-width:100px;");
-	}
-	
-	
-	/* 
-	 * Disable the load button.
-	 */
-	public void disableLoadButton() {
-		load.setDisable(true);
-		load.setStyle(disabledButtonStyle + "-fx-pref-width:100px;");
+	public void setLoadDisable(boolean off) {
+		load.setDisable(off);
 	}
 
-	
-	/* 
-	 * Set XML area for the loaded content result.
+	/**
+	 * Method to display file content in xml text area
+	 * 
+	 * @param text file content
 	 */
 	public void setXmlArea(String text) {
 		xmlArea.setText(text);
 	}
 
-	
-	/* 
-	 * Set result area for the search result.
+	/**
+	 * Method to display matching movies in result text area
+	 * 
+	 * @param text result string
 	 */
 	public void setResultArea(String text) {
 		resultArea.setText(text);
 	}
 
-	
-	/* 
-	 * Show alerts/popup.
+	/**
+	 * Method to show alerts
+	 * 
+	 * @param message alert message
+	 * @param type    alert type
 	 */
 	public void setAlert(String message, boolean type) {
 		Alert alert = null;
@@ -428,35 +388,34 @@ public class View {
 		} else {
 			alert = new Alert(AlertType.WARNING);
 		}
-		
+
 		alert.setTitle("IMDB Visualiser");
 		alert.setContentText(message);
 		alert.show();
 	}
 
-	
-	/* 
-	 * Calculate and display the charts in the chart page.
+	/**
+	 * Method to display charts of correlated top-keywords
+	 * 
+	 * @param top  number of top-keywords
+	 * @param type chart type
+	 * @param data top-keywords list
 	 */
 	public void setChart(int top, String type, ArrayList<Entry<String, Integer>> data) {
+		// remove old chart
 		chartPane.getChildren().remove(chart);
 
-		// Show a bar chart.
+		// create bar chart
 		if (type.equals("Bar Chart")) {
-			
+			// create axes
 			CategoryAxis xAxis = new CategoryAxis();
 			int max = data.get(0).getValue();
 			NumberAxis yAxis = new NumberAxis(0, max, 1);
-			
-			
-			// Set bar chart labels.
 			xAxis.setLabel("Keywords");
 			yAxis.setLabel("Frequency Scores");
 
-			
-			// Calculate bar chart data.
+			// create data series for bar chart
 			Series<String, Integer> series = new Series<String, Integer>();
-			
 			for (int i = 0; i < top; i++) {
 				String key = data.get(i).getKey();
 				int value = data.get(i).getValue();
@@ -464,18 +423,14 @@ public class View {
 				series.getData().add(new Data<String, Integer>(key, value));
 			}
 
+			// create bar chart
 			BarChart<String, Integer> bar = new BarChart(xAxis, yAxis);
 			bar.getData().add(series);
 
 			chart = bar;
-			
-		// Show a pie chart.
 		} else if (type.equals("Pie Chart")) {
-			
+			// create data list for pie chart
 			ObservableList<PieChart.Data> list = FXCollections.observableArrayList();
-			
-			
-			// Calculate the pie chart data.
 			for (int i = 0; i < top; i++) {
 				String key = data.get(i).getKey();
 				int value = data.get(i).getValue();
@@ -483,21 +438,22 @@ public class View {
 				list.add(new PieChart.Data(key, value));
 			}
 
+			// create pie chart
 			PieChart pie = new PieChart();
 			pie.setData(list);
 
 			chart = pie;
 		}
 
-		
-		// Show the chart.
+		// add new chart into chart pane
 		chart.setTitle("Top Co-occurring Keywords");
-		chartPane.add(chart, 0, 3, 2, 1);
+		chartPane.add(chart, 0, 1, 2, 1);
 	}
 
-	
-	/* 
-	 * Add listeners for menu items.
+	/**
+	 * Method to register action listener for menu items
+	 * 
+	 * @param listener event handler object
 	 */
 	public void addPaneListener(EventHandler<ActionEvent> listener) {
 		item1.setOnAction(listener);
@@ -505,34 +461,38 @@ public class View {
 		item3.setOnAction(listener);
 	}
 
-	
-	/* 
-	 * Add a listener after choosing a file from the upload dialog.
+	/**
+	 * Method to register action listener for choose button
+	 * 
+	 * @param listener event handler object
 	 */
 	public void addChooseListener(EventHandler<ActionEvent> listener) {
 		choose.setOnAction(listener);
 	}
 
-	
-	/* 
-	 * Add a click listener for the load button.
+	/**
+	 * Method to register action listener for load button
+	 * 
+	 * @param listener event handler object
 	 */
 	public void addLoadListener(EventHandler<ActionEvent> listener) {
 		load.setOnAction(listener);
 	}
 
-	
-	/* 
-	 * Add listeners to search function.
+	/**
+	 * Method to register action listener for search button and text field
+	 * 
+	 * @param listener event handler object
 	 */
 	public void addSearchListener(EventHandler<ActionEvent> listener) {
 		search.setOnAction(listener);
 		wordField.setOnAction(listener);
 	}
 
-	
-	/* 
-	 * Add listeners for all chart options.
+	/**
+	 * Method to register action listener for radio buttons and toggle buttons
+	 * 
+	 * @param listener event handler object
 	 */
 	public void addTopListener(EventHandler<ActionEvent> listener) {
 		top3.setOnAction(listener);
