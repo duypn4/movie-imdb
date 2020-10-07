@@ -13,6 +13,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * @version 1.0
  */
 public class MovieHandler extends DefaultHandler {
+
 	// flag showing begin of title element
 	private boolean isTitle = false;
 	// flag showing begin of year element

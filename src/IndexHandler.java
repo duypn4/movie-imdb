@@ -14,6 +14,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * @version 1.0
  */
 public class IndexHandler extends DefaultHandler {
+
 	// hash table index
 	private Hashtable<String, Integer> index;
 	// flag showing begin of keyword element

@@ -114,6 +114,7 @@ public class Controller {
 		// check file empty
 		if (content.isEmpty()) {
 			view.setAlert("This file is empty, please select another source file!", false);
+			view.setFileLabel("No file chosen.");
 		} else {
 			view.setXmlArea(content);
 
