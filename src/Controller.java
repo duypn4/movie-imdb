@@ -27,6 +27,8 @@ public class Controller {
 	private File file;
 	// flag showing the file loaded
 	private boolean loaded;
+	// flag showing movie found
+	private boolean found;
 
 	/**
 	 * Constructor
@@ -61,9 +63,17 @@ public class Controller {
 		if (loaded) {
 			String type = item.getText();
 
+			// check movie found before going to visual perspective
 			if (type.equals("Visualisation")) {
-				visualiseData();
+				if (found) {
+					visualiseData();
+				} else {
+					view.setAlert("Please search a movie first!", false);
+					type = "";
+					item.setSelected(false);
+				}
 			}
+
 			view.setPane(type);
 		} else {
 			view.setAlert("Please load an IMDB XML source file first!", false);
@@ -75,6 +85,7 @@ public class Controller {
 	 * Method to choose a XML source file
 	 */
 	public void selectFile() {
+		// get selected file
 		file = view.getFile(stage);
 		loaded = false;
 
@@ -107,9 +118,9 @@ public class Controller {
 	 * from a keyword index
 	 */
 	public void loadFile() {
-		view.setLoadDisable(true);
 		// get file content
 		String content = model.readFileContent(file);
+		view.setLoadDisable(true);
 
 		// check file empty
 		if (content.isEmpty()) {
@@ -117,13 +128,9 @@ public class Controller {
 			view.setFileLabel("No file chosen.");
 		} else {
 			view.setXmlArea(content);
-
-			// compute index and top-keywords
-			model.createIndex(file);
-			model.createTopKeywordList();
+			view.setAlert("This IMDB XML source file loaded successfully...", true);
 
 			loaded = true;
-			view.setAlert("This IMDB XML source file loaded successfully...", true);
 		}
 	}
 
@@ -133,13 +140,25 @@ public class Controller {
 	public void searchFile() {
 		// get keyword from text field
 		String keyword = view.getKeyword().toLowerCase();
+		found = false;
 
 		// check keyword not empty then find movie
 		if (keyword.isEmpty()) {
 			view.setAlert("Please enter your keyword before searching movies!", false);
+			view.setResultArea("");
 		} else {
+			// get the matching movies
 			String results = model.searchMovie(keyword, file);
-			view.setResultArea(results);
+
+			// check results not empty then display movie
+			if (results.isEmpty()) {
+				view.setAlert("There was no movies matching your keywords!", false);
+				view.setResultArea("");
+			} else {
+				view.setResultArea(results);
+
+				found = true;
+			}
 		}
 	}
 
@@ -147,15 +166,18 @@ public class Controller {
 	 * Method to visualise top-keywords as charts
 	 */
 	public void visualiseData() {
-		// get number of top-keywords
-		String[] token = view.getSelectedTop().split("-");
-		int top = Integer.parseInt(token[1]);
 		// get chart type
 		String type = view.getSelectedChart();
-		// get entire top-keywords
-		ArrayList<Entry<String, Integer>> data = model.getTops();
 
-		view.setChart(top, type, data);
+		if (!type.isEmpty()) {
+			// get number of top-keywords
+			String[] token = view.getSelectedTop().split("-");
+			int top = Integer.parseInt(token[1]);
+			// get entire top-keywords
+			ArrayList<Entry<String, Integer>> data = model.getTops();
+
+			view.setChart(top, type, data);
+		}
 	}
 
 }

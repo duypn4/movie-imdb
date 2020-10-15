@@ -1,3 +1,4 @@
+import java.util.Hashtable;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -12,8 +13,10 @@ import org.xml.sax.helpers.DefaultHandler;
  *
  * @version 1.0
  */
-public class MovieHandler extends DefaultHandler {
+public class SearchHandler extends DefaultHandler {
 
+	// list of keywords inside desirable movies
+	private Hashtable<String, Integer> temp;
 	// flag showing begin of title element
 	private boolean isTitle = false;
 	// flag showing begin of year element
@@ -28,6 +31,10 @@ public class MovieHandler extends DefaultHandler {
 	private boolean isGenres = false;
 	// flag showing begin of item element
 	private boolean isItem = false;
+	// flag showing begin of keywords element
+	private boolean isKws = false;
+	// flag showing begin of keyword element
+	private boolean isKw = false;
 	// flag showing desirable movies
 	private boolean found = false;
 	// counter for number of matching movies
@@ -41,9 +48,11 @@ public class MovieHandler extends DefaultHandler {
 	 * Constructor
 	 * 
 	 * @param keyword string keyword entered by users
+	 * @param temp    array list of relevant keyword
 	 */
-	public MovieHandler(String keyword) {
+	public SearchHandler(String keyword, Hashtable<String, Integer> temp) {
 		this.keyword = keyword;
+		this.temp = temp;
 	}
 
 	@Override
@@ -65,54 +74,60 @@ public class MovieHandler extends DefaultHandler {
 				isGenres = true;
 			} else if (qName.equalsIgnoreCase("item") && isGenres) {
 				isItem = true;
+			} else if (qName.equalsIgnoreCase("kws")) {
+				isKws = true;
+			} else if (qName.equalsIgnoreCase("kw") && isKws) {
+				isKw = true;
 			}
 		}
 	}
 
 	@Override
 	public void endElement(String uri, String localName, String qName) throws SAXException {
-		// check whether it is at closing tag of director and genres elements
+		// check whether it is at closing tag of director, genres, keyword elements
 		if (qName.equalsIgnoreCase("director")) {
 			isDirector = false;
 		} else if (qName.equalsIgnoreCase("genres")) {
 			isGenres = false;
+		} else if (qName.equalsIgnoreCase("kws")) {
+			isKws = false;
 			found = false;
 		}
 	}
 
 	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
-		if (isTitle) {
-			// get movie title
-			String title = new String(ch, start, length);
+		// get the text content of each element
+		String str = new String(ch, start, length);
 
+		if (isTitle) {
 			// check whether movie title containing user keyword
-			if (title.toLowerCase().contains(keyword)) {
+			if (str.toLowerCase().contains(keyword)) {
 				found = true;
 				counter++;
-				results += "\nMovie: " + counter + "\n" + "Title: " + title + "\n";
+				results += "\nMovie: " + counter + "\n" + "Title: " + str + "\n";
 			}
 			isTitle = false;
 		} else if (isYear) {
-			String year = new String(ch, start, length);
-
-			results += "Year: " + year + "\n";
+			results += "Year: " + str + "\n";
 			isYear = false;
 		} else if (isRate) {
-			String rate = new String(ch, start, length);
-
-			results += "Rate: " + rate + "\n";
+			results += "Rate: " + str + "\n";
 			isRate = false;
 		} else if (isName) {
-			String name = new String(ch, start, length);
-
-			results += "Director Name: " + name + "\n";
+			results += "Director Name: " + str + "\n";
 			isName = false;
 		} else if (isItem) {
-			String item = new String(ch, start, length);
-
-			results += "Genre: " + item + "\n";
+			results += "Genre: " + str + "\n";
 			isItem = false;
+		} else if (isKw) {
+			// add relevant keyword into list
+			Integer frequency = temp.get(str);
+			if (frequency == null) {
+				temp.put(str, 0);
+			}
+
+			isKw = false;
 		}
 	}
 
@@ -122,10 +137,8 @@ public class MovieHandler extends DefaultHandler {
 	 * @return string of all matching movies
 	 */
 	public String getResults() {
-		// check no movies matched then format results
-		if (results.isEmpty()) {
-			results = "There was no movies matching your keywords!";
-		} else {
+		// check movies matched then format results
+		if (!results.isEmpty()) {
 			results = "MATCHING MOVIES\n------------------------------------------" + results;
 		}
 

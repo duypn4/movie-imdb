@@ -1,12 +1,8 @@
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Map.Entry;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -37,7 +33,6 @@ public class Model {
 	 */
 	private Model() {
 		index = new Hashtable<String, Integer>();
-		tops = new ArrayList<Entry<String, Integer>>(10);
 		initParser();
 	}
 
@@ -76,7 +71,7 @@ public class Model {
 	}
 
 	/**
-	 * Method to read lines from a XML source file
+	 * Method to read elements from a XML source file
 	 * 
 	 * @param file XML source file
 	 * @return file content string
@@ -85,16 +80,13 @@ public class Model {
 		// file content string
 		String content = "";
 
-		// concatenate all lines into string
+		// parse source file to compute index and content
+		index.clear();
 		try {
-			BufferedReader input = new BufferedReader(new FileReader(file));
-			String line = input.readLine();
-			while (line != null) {
-				content += line + "\n";
-				line = input.readLine();
-			}
-			input.close();
-		} catch (IOException e) {
+			LoadHandler handler = new LoadHandler(index);
+			parser.parse(file, handler);
+			content = handler.getContent();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -102,43 +94,24 @@ public class Model {
 	}
 
 	/**
-	 * Method to compute hash table index of correlated keywords
-	 * 
-	 * @param file XML source file
-	 */
-	public void createIndex(File file) {
-		// clear all items inside index
-		index.clear();
-
-		// parse source file and compute index
-		try {
-			IndexHandler handler = new IndexHandler(index);
-			parser.parse(file, handler);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Method to compute top-keywords list
+	 * 
+	 * @param temp array list of relevant keywords
 	 */
-	public void createTopKeywordList() {
-		// get set of index entries
-		List<Entry<String, Integer>> temp = new ArrayList<Entry<String, Integer>>(index.entrySet());
+	public void createTopKeywordList(Hashtable<String, Integer> temp) {
+		// get frequency for relevant keyword
+		for (String key : temp.keySet()) {
+			Integer value = index.get(key);
+			temp.put(key, value);
+		}
 
-		// sort set of index entries in descending order
-		Collections.sort(temp, Collections.reverseOrder(new Comparator<Entry<String, Integer>>() {
+		// sort set of relevant keywords in descending order
+		tops = new ArrayList<Entry<String, Integer>>(temp.entrySet());
+		Collections.sort(tops, Collections.reverseOrder(new Comparator<Entry<String, Integer>>() {
 			public int compare(Entry<String, Integer> element1, Entry<String, Integer> element2) {
 				return element1.getValue().compareTo(element2.getValue());
 			}
 		}));
-
-		// add first ten index entries into top-keywords list
-		tops.clear();
-		for (int i = 0; i < 10; i++) {
-			Entry<String, Integer> element = temp.get(i);
-			tops.add(element);
-		}
 	}
 
 	/**
@@ -151,12 +124,15 @@ public class Model {
 	public String searchMovie(String keyword, File file) {
 		// results containing desirable movies
 		String results = "";
+		// list of relevant keyword
+		Hashtable<String, Integer> temp = new Hashtable<String, Integer>(10);
 
 		// parse source file and find movies
 		try {
-			MovieHandler handler = new MovieHandler(keyword);
+			SearchHandler handler = new SearchHandler(keyword, temp);
 			parser.parse(file, handler);
 			results = handler.getResults();
+			createTopKeywordList(temp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

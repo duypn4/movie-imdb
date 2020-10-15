@@ -32,7 +32,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -261,8 +260,6 @@ public class View {
 
 		// create chart pane
 		chartPane = new GridPane();
-		chartPane.getColumnConstraints().add(new ColumnConstraints(400));
-		chartPane.getColumnConstraints().add(new ColumnConstraints(200));
 		chartPane.setPadding(new Insets(10, 10, 10, 10));
 		chartPane.setAlignment(Pos.CENTER);
 		chartPane.setVgap(10);
@@ -308,9 +305,15 @@ public class View {
 	 * @return button label string
 	 */
 	public String getSelectedChart() {
-		ToggleButton button = (ToggleButton) group2.getSelectedToggle();
+		// chart type
+		String type = "";
 
-		return button.getText();
+		ToggleButton button = (ToggleButton) group2.getSelectedToggle();
+		if (button != null) {
+			type = button.getText();
+		}
+
+		return type;
 	}
 
 	/**
