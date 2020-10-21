@@ -13,7 +13,7 @@ import javax.xml.parsers.SAXParserFactory;
  * 
  * @author Ngoc Duy Pham (102888457)
  * @author Gabriel Andreas (101272020)
- * @author Van Anh Tran (123456789)
+ * @author Van Anh Tran (102421412)
  * 
  * @version 1.0
  */

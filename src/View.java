@@ -41,7 +41,7 @@ import javafx.stage.Stage;
  * 
  * @author Ngoc Duy Pham (102888457)
  * @author Gabriel Andreas (101272020)
- * @author Van Anh Tran (123456789)
+ * @author Van Anh Tran (102421412)
  *
  * @version 1.0
  */
@@ -136,7 +136,7 @@ public class View {
 		subtitleLabel.setStyle("-fx-padding:0 0 30px 0");
 
 		// create team title
-		teamLabel = new Label("Team:\n- 102888457 | Duy\n- 101272020 | Gabriel\n- 123456789 | Van Anh");
+		teamLabel = new Label("Team:\n- 102888457 | Duy\n- 101272020 | Gabriel\n- 102421412 | Van Anh");
 	}
 
 	/**
