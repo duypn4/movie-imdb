@@ -6,10 +6,15 @@ IMDB is a keyword search system over XML documents of information related to fil
 
 ## Screenshots
 **Parsing XML Document**
-![](images/parse.png)  
+
+![](images/parse.png)
+
 **Searching Movies**
-![](images/search.png)  
+
+![](images/search.png)
+
 **Visualising Top-keywords**
+
 ![](images/bar.png) ![](images/pie.png)
 
 ## How to use it?
