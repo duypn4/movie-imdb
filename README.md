@@ -8,14 +8,12 @@ IMDB is a keyword search system over XML documents of information related to fil
 **Parsing XML Document**
 
 ![](images/parse.png)
-
 **Searching Movies**
 
 ![](images/search.png)
-
 **Visualising Top-keywords**
 
-![](images/bar.png) ![](images/pie.png)
+![](images/bar.png)![](images/pie.png)
 
 ## How to use it?
 The application can run on any machine running Java.
